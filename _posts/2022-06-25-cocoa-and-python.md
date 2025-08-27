@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Coffee & Python
+title: Chai & Python
 image: "/posts/coffee_python.jpg"
 tags: [Python, Chai]
 ---
