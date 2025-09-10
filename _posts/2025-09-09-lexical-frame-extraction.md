@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Lexical Frame Extraction with Python
-image: "/posts/Lexical_Frame.jpeg"
+image: "/posts/Lexical_Frame.jpg"
 tags: [NLP, Python]
 ---
 
