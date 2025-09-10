@@ -125,7 +125,7 @@ A for loop and a series of if-conditionals calculate word counts for the sub-cor
 
         # for loop to establish total word count and sub-corpora word counts.
         for word in wordList:
-            if word not in puncList: # for every word not in the punclist, word count increases by 1 in corpus and sub-corpora
+            if word not in puncList: # Word count increases by 1 for every word in the corpus as a whole
                 totalWordCount += 1
                 if sub_corp == 'BIO': #if word in BIO Sub-corp word count for that sub-corpus increases by 1
                     BIO_wcount += 1
