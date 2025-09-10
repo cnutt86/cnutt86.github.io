@@ -122,8 +122,6 @@ for file in glob.glob(path):
 A for loop and a series of if-conditionals calculate word counts for the sub-corpora and the corpus as a whole.
 
 ```python
-
-        # for loop to establish total word count and sub-corpora word counts.
         for word in wordList:
             if word not in puncList: # Word count increases by 1 for every word in the corpus as a whole
                 totalWordCount += 1
