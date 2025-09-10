@@ -43,7 +43,8 @@ frame124Dic = {}
 ```
 The title of a new folder "NSFAC Frame Data" populates the new_folder variable. the if conditional checks to see that that file does not exist and creates a new folder with theos.makedirs function.
 
-```new_folder = "NSFAC Frame Data"
+```
+new_folder = "NSFAC Frame Data"
 if not os.path.exists(new_folder):
     os.makedirs(new_folder)
 ```
