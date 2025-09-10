@@ -5,7 +5,7 @@ image: "/posts/Lexical_Frame.jpg"
 tags: [NLP, Python]
 ---
 
-This post contains the Python script I developed to extract all four-word lexical frames (e.g., the * of this, study findings * that, etc.)from a corpus of 3,500 NSF grant proposal abstracts. The script was also used to calculate key statistics reported in an academic article published in Applied Corpus Linguistics entitled "Profiling Lexical Frame Use in NSF Grant Proposal Abstracts."
+This post contains the Python script I developed to extract all four-word lexical frames (e.g., *the * of this*, *study findings * that*, etc.)from a corpus of 3,500 NSF grant proposal abstracts. The script was also used to calculate key statistics reported in an academic article published in Applied Corpus Linguistics entitled *Profiling Lexical Frame Use in NSF Grant Proposal Abstracts*.
 
 ---
 
@@ -22,7 +22,7 @@ A list variable is initialized and populated. It is used to facilitate word coun
 ```python
 puncList = [',','.',':',';','[',']','"','?','(',')','-','--','%','$','@','!',"|","{","}","=",'+','<','>','/',"\\"]
 ```
-integer variables used for calculatin various word counts are initatied. These include word counts for for the entire corpus in addition to word counts for each academic sub-discipline represented by the corpus.  
+integer variables used for calculating various word counts are initatied. These include word counts for the entire corpus in addition to word counts for each academic sub-discipline represented by the corpus.  
 
 ```python
 totalWordCount = 0
@@ -35,7 +35,7 @@ GEO_wcount = 0
 MPS_wcount = 0
 SBE_wcount = 0
 ```
-The primary dictionaries for storing lexical frames are initialized. The first dictionary stores frames containg a variant slot in the second position (the * of the). The second dictionary stores frames with a variant slot in the third position (study findings * that).
+The primary dictionaries for storing lexical frames are initialized. The first dictionary stores frames containg a variant slot in the second position (*the * of the*). The second dictionary stores frames with a variant slot in the third position (*study findings * that*).
 
 ```python
 frame134Dic = {}
@@ -48,13 +48,13 @@ new_folder = "NSFAC Frame Data"
 if not os.path.exists(new_folder):
     os.makedirs(new_folder)
 ```
-Four new csv file variables are initialized here. the output data will be saved to these files.
+Four new csv file variables are initialized here. The output data will be saved to these files.
 
 ```python
-newFile = "frame134_data.csv"
-newFile2 = "frame134_fillers.csv"
-newFile3 = "frame124_data.csv"
-newFile4 = "frame124_fillers.csv"
+newFile = "frame134_data.csv" # This file will contain key metadata for 1-34 frames
+newFile2 = "frame134_fillers.csv" # This file will contain key filler information for the open variable slot in 1-34 frames
+newFile3 = "frame124_data.csv" # This file will contain key metadata for 12-4 frames
+newFile4 = "frame124_fillers.csv" # This file will contain key filler information for the open variable slot in 12-4 frames
 ```
 The first output file is opened for reading and writing. The file is given the name attached to the variable 'newFile'. The os.path.join function is used to include the new file in the folder attached to the 'new_folder'variable.
 
@@ -98,7 +98,7 @@ The fourth output file is opened for reading and writing. The file is given the 
 fileOut4 = open(os.path.join(new_folder, newFile4),'w+')
 fileOut4.write("Frame,F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,F13,F14,F15\n") #first row of csv is populated with frame and filler (F1,F2,etc.) column headers
 ```
-An absolute file path is initialized for reading in the corpus. The glob.glob function with a for loop goes into the file path and employs various regular expressions to modify each text file in the folder. Some modifications are made to the file names. These modifications become more relevant later on in the script. 
+An absolute file path is initialized for reading in the corpus. The glob.glob function with a for loop goes into the file path and employs various regular expressions to modify each text file in the folder to prepare them for further analysis. Some modifications are made to the file names. These modifications become more relevant later on in the script. 
 
 ```python
 path = r"/Users/christophernuttall/Dropbox/01 MacBook Pro Files/01 PhD ALT/01_Corpus Research/01_Copora/NSFAC_Untagged/*.txt"
@@ -119,7 +119,7 @@ for file in glob.glob(path):
         text = re.sub("\\s+", " ", text) #eliminates extra whitespace
         wordList = text.split() #splits text string into a list array of punctuation and words.
 ```
-A for loop and a series of if-conditionals calculate word counts for the sub-corpora and the corpus as a whole.
+A for loop and a series of if-conditionals calculate word counts for the disciplinary sub-corpora and the corpus as a whole.
 
 ```python
         for word in wordList:
@@ -140,48 +140,52 @@ A for loop and a series of if-conditionals calculate word counts for the sub-cor
                 else: #if word in SBE Sub-corp word count for that sub-corpus increases by 1
                     SBE_wcount += 1
 ```
-**CONTINUE EDITING HERE**
+This marks the beginning of the for loop constituting the heart of the script. It captures all four-word lexical bundles (e.g., *this study aims to*) in the corpus that do not cross punctuation boundaries, and it converts each of them to two types of lexical frames. The first is a lexical frame with an open variant slot in the second position (e.g., *this * aims to*), and the second is contains an open variant slot in the third position (e.g., *this study * to*). Two dictionaries (one per lexical frame type) are used to manage data associated with each lexical frame.  
 
 ```python
-        # main for loop for finding all 4 word bundles, converting them to frames, and saving them to frame dictionary
         for i in range(len(wordList)-3):
 
-            #four word bunde created and saved to 'fullBundle' variable.
+            #four word bundle created and saved to 'fullBundle' variable.
             fullBundle = str(wordList[i]) + " " + str(wordList[i + 1]) + " " + str(wordList[i + 2]) + ' ' + str(wordList[i + 3])
             fullBundleList = fullBundle.split() # 4 word bundle is split into a list using split function
             check = any(item in puncList for item in fullBundleList) #any function compares bundle list with punclist to see if bundle list has punctuation
             if check == True: #if a bundle has punctuation in it, it is ignored.
                 continue # command to head to the top of the for loop.
 
-            #else: #if there is no punctuation, the bundle is saved to the 'frame134' or 'frame124 variable
-            # the second or third word is replaced with '*'
+            #if there is no punctuation, the bundle is saved to both the 'frame134' or 'frame124 variable
+            # Depending on the variable, the second or third word is replaced with '*'
             frame134 = str(wordList[i]) + " * " + str(wordList[i + 2]) + ' ' + str(wordList[i + 3])
             frame124 = str(wordList[i]) + " " + str(wordList[i + 1]) + ' * ' + str(wordList[i + 3])
+```
+This block of script specifically works with the 1*34 lexical frames decitionary. Hashed comments explain in detail what happens with each lexical frame in addition to the metadata that included with each frame key in the dictionary. 
 
-            # if frame not in frame dictionary, the frame becomes a key in the dictionary attached to a list.
-            # The list hols information for frame count, filename, file count, filler list 1, truncated filler list, sub corpora
-            # counts and sets for holding file names for each sub-corpus, final set attached to key is used to
-            # determine corpus range.
+```python
+            # if the frame is not in the frame dictionary, the frame becomes a key in the dictionary attached to a list.
+            # The list holds metadata realted to frame count, filename, file count, filler list 1, truncated filler list, sub corpora counts and sets for holding file names for each sub-corpus.
+
+            # A final set attached to key is used to determine corpus range.
             if frame134 not in frame134Dic:
+
                 # frame count, filename, file count, filler list 1, truncated filler list, frame counts and sets for sub-corporpora, set for sub-corp range
                 frame134Dic[frame134] = [1, file_name, 1, [], [], 0, set(), 0, set(), 0, set(), 0, set(), 0, set(), 0, set(), 0, set(), set()]
             else:
                 frame134Dic[frame134][0] += 1 # if frame in frame dic already, frame count is increased by 1.
 
-                # if a new file is detected from the frame, file name is replaced, and file count increases.
+                # if a new file is detected from the frame, the file name is replaced, and the file count increases.
                 if file_name != frame134Dic[frame134][1]:
                     frame134Dic[frame134][1] = file_name
                     frame134Dic[frame134][2] += 1
 
-            # removed filler word from bundle list is appended to filler list attached to key. List will be used to count total fillers eventually
+            # The removed filler word from the bundle list is appended to the filler list attached to the frame key.
+            # This list is used later to count total fillers.
             frame134Dic[frame134][3].append(fullBundleList[1])  # filler list with duplicates
 
-            # removed filler added to second filler count list if it is not already in the list
-            if fullBundleList[1] not in frame134Dic[frame134][4]:  # creating a filler list. This eliminates duplicates to facilitate TTR count
+            # The removed filler is added to second filler count list if it is not already in the list.
+            # Creating this second filler list eliminates duplicate to facilitate TTR calculation. 
+            if fullBundleList[1] not in frame134Dic[frame134][4]:
                 frame134Dic[frame134][4].append(fullBundleList[1])
 
-            #series of if/elif statemets work with subcorpora and various key values to determine raw counts in sub-corpus
-            # and number of files in which frame occurs for the coprus and also corpus range.
+            # A series of if/elif statemets work with subcorpora and various key values to determine raw counts in the sub-corpus and the number of files in which the frame occurs for the coprus and also corpus range.
             if sub_corp == 'BIO': #BI0 sub-corpus
                 frame134Dic[frame134][5] += 1 #frame count increases by 1
                 frame134Dic[frame134][6].add(file_name) #file name added to BIO set (later used for file count with len function)
@@ -210,36 +214,28 @@ A for loop and a series of if-conditionals calculate word counts for the sub-cor
                 frame134Dic[frame134][17] += 1
                 frame134Dic[frame134][18].add(file_name)
                 frame134Dic[frame134][19].add('SBE')
+```
+This block of script works with the 12*4 lexical frames decitionary. Since this portion of the script follows the precises steps of the previous block, hashed comments have not been included.
 
-
-
-            # if frame not in frame dictionary, the frame becomes a key in the dictionary attached to a list.
-            # The list carries information for frame count, filename, file count, filler list 1, truncated filler list, sub corpora
-            # counts and sets for holding file names for each sub-corpus, final set attached to key is used to
-            # determine corpus range.
+```python
             if frame124 not in frame124Dic:
-                frame124Dic[frame124] = [1, file_name, 1, [], [], 0, set(), 0, set(), 0, set(), 0, set(), 0, set(), 0, set(), 0, set(), set()]  # frame count, filename, file count, filler list 1, truncated filler list,
+                frame124Dic[frame124] = [1, file_name, 1, [], [], 0, set(), 0, set(), 0, set(), 0, set(), 0, set(), 0, set(), 0, set(), set()] 
             else:
                 frame124Dic[frame124][0] += 1 # if frame in frame dic already, frame count is increased by 1.
 
-                # if a new file is detected from the frame, file name is replaced, and file count increases.
                 if file_name != frame124Dic[frame124][1]:
                     frame124Dic[frame124][1] = file_name
                     frame124Dic[frame124][2] += 1
 
-            # removed filler word from bundle list is appended to filler list attached to key. List will be used to count total fillers eventually
-            frame124Dic[frame124][3].append(fullBundleList[2])  # filler list with duplicates
+            frame124Dic[frame124][3].append(fullBundleList[2])
 
-            # removed filler added to second filler count list if it is not already in the list
-            if fullBundleList[2] not in frame124Dic[frame124][4]:  # creating a filler list. This eliminates duplicates to facilitate TTR count
+            if fullBundleList[2] not in frame124Dic[frame124][4]:
                 frame124Dic[frame124][4].append(fullBundleList[2])
 
-            #series of if/elif statemets work with subcorpora and various key values to determine raw counts in sub-corpus
-            # and number of files in which frame occurs for the corpus and also corpus range.
             if sub_corp == 'BIO': #BIO sub-corpus
                 frame124Dic[frame124][5] += 1 #frame count increases by 1
-                frame124Dic[frame124][6].add(file_name) #file name added to BIO set (later used for file count with len function)
-                frame124Dic[frame124][19].add('BIO') #'BIO' added to final set attached to key (later used to determine sub corpus range with len function).
+                frame124Dic[frame124][6].add(file_name)
+                frame124Dic[frame124][19].add('BIO')
             elif sub_corp == 'CIS': # exact same thing as above, but with easp sub-corpus
                 frame124Dic[frame124][7] += 1
                 frame124Dic[frame124][8].add(file_name)
@@ -264,16 +260,16 @@ A for loop and a series of if-conditionals calculate word counts for the sub-cor
                 frame124Dic[frame124][17] += 1
                 frame124Dic[frame124][18].add(file_name)
                 frame124Dic[frame124][19].add('SBE')
+```
+Now that both frame dictionaries have been fully popluated, I take additional steps to work with the the data stored in each dictionary. This for loop works with data in the 1*34 dictionary. Hashed comments explain waht I do with the dictionary.
 
-
-
-
-
-#for loop used to loop through 134 frame dictionary to perform various tasks with each frame
+```python
 for i in sorted(frame134Dic):
-    norm_freq = (frame134Dic[i][0]/totalWordCount)*1000000 #normed count for each frame is calculated for entire corpus .
 
-    #sub-corpora norming counts
+    # A normed count for each frame is calculated for the entire corpus.
+    norm_freq = (frame134Dic[i][0]/totalWordCount)*1000000 
+
+    # For each frame, a normed count is calcuted for each disicplinary sub-corpus 
     BIO_norm = (frame134Dic[i][5]/BIO_wcount)*100000
     CIS_norm = (frame134Dic[i][7]/CIS_wcount)*100000
     EHR_norm = (frame134Dic[i][9]/EHR_wcount)*100000
@@ -282,18 +278,18 @@ for i in sorted(frame134Dic):
     MPS_norm = (frame134Dic[i][15]/MPS_wcount)*100000
     SBE_norm = (frame134Dic[i][17]/SBE_wcount)*100000
 
-    #cutoff set for data ouput. norm freq must be greater that 10, frame must appear in 5+ files, frame must appear in 3+ sub-corpora
+    # A cutoff is set for data ouput.
+    # The normed frequency for a givnen frame must be greater that 10, the frame must appear in 5+ files, and it must also appear in 3+ sub-corpora
     if norm_freq >= 10 and frame134Dic[i][2] >= 5 and len(frame134Dic[i][19]) >= 3:
 
-        #first few cells under headers are added to output files: key, range, total raw caount, and total normed count
+        # The first few cells under headers are added to output files: key, range, total raw caount, and total normed count
         fileOut.write(i + ',' + str(frame134Dic[i][2]) + ',' + str(frame134Dic[i][0]) + ',' + str(round(norm_freq, 2)) + ',')
 
-        #predictability calculated fore each frame
+        # Predictability is calculated fore each frame
         predictCount = Counter(frame134Dic[i][3])  # Counter functions used to count all fillers in expanded filler list.
         most_occur = predictCount.most_common(1) #most common function used to determine most frequently occurring filler. Creates tuple with filler and its count
         most_occur = most_occur[0] # filler saved to most_occur variable
         predictability = most_occur[1]/frame134Dic[i][0] #predictability calculated using most frequent filler count divided by raw count of frame.
-
 
 
         filler_TTR_count = 0  # figuring out TTR, also populating second CSV sheet with frame and associated fillers.
@@ -302,16 +298,16 @@ for i in sorted(frame134Dic):
 
         # each filler is printed to the same row as it's frame using for loop. Also variant count is increased for each unique filler
         for filler in fillers:
-            filler_TTR_count += 1 #the filler count increases by one for each new filler.
+            filler_TTR_count += 1 # the filler count increases by one for each new filler.
             fileOut2.write(filler + ',') #each filler is added to the row associated with its frame.
-        fileOut2.write("\n") #once all fillers for a frame are added to row, a new row initates.
+        fileOut2.write("\n") # once all fillers for a frame are added to row, a new row initates.
         TTR = filler_TTR_count/frame134Dic[i][0] #TTR count calculated using unique filler count divided by frame's raw frequency.
 
-        #remaining data cells are populated fore each frame
+        # The remaining data cells are populated fore each frame
         #In order of occurrence: Filler Count, F1 filler, F1 filler count, TTR, predictability
         fileOut.write(str(filler_TTR_count) + ',' + str(most_occur[0]) + ',' + str(most_occur[1]) + ',' + str(round(TTR, 2)) + ',' + str(round(predictability, 2)) + ",")
 
-        #following lines add data for each sub-corpus to spreadsheet: range, raw frequency, normed frequency.
+        # The following lines add data for each sub-corpus to the spreadsheet: range, raw frequency, normed frequency.
         fileOut.write(str(len(frame134Dic[i][6])) + ',' + str(frame134Dic[i][5]) + ',' + str(round(BIO_norm, 2)) + ",")
         fileOut.write(str(len(frame134Dic[i][8])) + ',' + str(frame134Dic[i][7]) + ',' + str(round(CIS_norm, 2)) + ",")
         fileOut.write(str(len(frame134Dic[i][10])) + ',' + str(frame134Dic[i][9]) + ',' + str(round(EHR_norm, 2)) + ",")
@@ -319,10 +315,14 @@ for i in sorted(frame134Dic):
         fileOut.write(str(len(frame134Dic[i][14])) + ',' + str(frame134Dic[i][13]) + ',' + str(round(GEO_norm, 2)) + ",")
         fileOut.write(str(len(frame134Dic[i][16])) + ',' + str(frame134Dic[i][15]) + ',' + str(round(MPS_norm, 2)) + ",")
         fileOut.write(str(len(frame134Dic[i][18])) + ',' + str(frame134Dic[i][17]) + ',' + str(round(SBE_norm, 2)) + "\n")
+```
+This for loop works with data in the 12 * 4 frame dictionary. It follows the same procedures that were followed for the 1 * 34 dictionary. 
 
-#for loop used to loop through 124 frame dictionary to perform various tasks with each frame
+```python
 for i in sorted(frame124Dic):
-    norm_freq = (frame124Dic[i][0]/totalWordCount)*1000000 #normed count for each frame is calculated for entire corpus .
+
+    #normed count for each frame is calculated for entire corpus.
+    norm_freq = (frame124Dic[i][0]/totalWordCount)*1000000 
 
     #sub-corpora norming counts
     BIO_norm = (frame124Dic[i][5]/BIO_wcount)*100000
@@ -333,13 +333,13 @@ for i in sorted(frame124Dic):
     MPS_norm = (frame124Dic[i][15]/MPS_wcount)*100000
     SBE_norm = (frame124Dic[i][17]/SBE_wcount)*100000
 
-    #cutoff set for data ouput. norm freq must be greater that 10, frame must appear in 5+ files, frame must appear in 3+ sub-corpora
+    # The cutoff is set for data ouput. The normed frequencies must be greater that 10, frame must appear in 5+ files, frame must appear in 3+ sub-corpora
     if norm_freq >= 10 and frame124Dic[i][2] >= 5 and len(frame124Dic[i][19]) >= 3:
 
-        #first few cells under headers are added to output files: key, range, total raw caount, and total normed count
+        # The first few cells under headers are added to output files: key, range, total raw caount, and total normed count
         fileOut3.write(i + ',' + str(frame124Dic[i][2]) + ',' + str(frame124Dic[i][0]) + ',' + str(round(norm_freq, 2)) + ',')
 
-        #predictability calculated fore each frame
+        # predictability calculated fore each frame
         predictCount = Counter(frame124Dic[i][3])  # Counter functions used to count all fillers in expanded filler list.
         most_occur = predictCount.most_common(1) #most common function used to determine most frequently occurring filler. Creates tuple with filler and its count
         most_occur = most_occur[0] # filler saved to most_occur variable
@@ -370,7 +370,10 @@ for i in sorted(frame124Dic):
         fileOut3.write(str(len(frame124Dic[i][14])) + ',' + str(frame124Dic[i][13]) + ',' + str(round(GEO_norm, 2)) + ",")
         fileOut3.write(str(len(frame124Dic[i][16])) + ',' + str(frame124Dic[i][15]) + ',' + str(round(MPS_norm, 2)) + ",")
         fileOut3.write(str(len(frame124Dic[i][18])) + ',' + str(frame124Dic[i][17]) + ',' + str(round(SBE_norm, 2)) + "\n")
+```
+Here, I take a few final steps to wrap up the script. First, I print word counts for the corpus and each sub-corpus. These are used for reporting purposes in the published article. Second, I close all output files. Finally, I print a message to let me know the enire process has been completed. 
 
+```python
 
 #total word counts are printed for entire corpus and sub-corpora for my information and corpus documentation purposes.
 print("The total word count is: " + str(totalWordCount))
@@ -388,10 +391,10 @@ fileOut2.close()
 fileOut3.close()
 fileOut4.close()
 
-#A little note to let me know everything is done.
+# I print a little note to let me know everything is done.
 print("Processing is complete. Check the output to make sure it meets expectations.")
 ```
-
+Thank you for taking the time to read through this script! 
 
 
 
