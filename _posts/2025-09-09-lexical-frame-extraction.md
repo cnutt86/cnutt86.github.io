@@ -22,24 +22,30 @@ A list variable is initialized and populated. It is used to facilitate word coun
 ```
 puncList = [',','.',':',';','[',']','"','?','(',')','-','--','%','$','@','!',"|","{","}","=",'+','<','>','/',"\\"]
 ```
+integer variables used for calculatin various word counts are initatied. These include word counts for for the entire corpus in addition to word counts for each academic sub-discipline represented by the corpus.  
 
-Let's also create a place where we can store any primes we discover.  A list will be perfect for this job
-
-```ruby
-primes_list = []
 ```
+totalWordCount = 0
 
-We're going to end up using a while loop to iterate through our list and check for primes, but before we construct that I always it valuable to code up the logic and iterate manually first.  This means I can check that it is working correctly before I set it off to run through everything on it's own
+BIO_wcount = 0
+CIS_wcount = 0
+EHR_wcount = 0
+ENG_wcount = 0
+GEO_wcount = 0
+MPS_wcount = 0
+SBE_wcount = 0
 
-So, we have our set of numbers (called number_range to check all integers between 2 and 20. Let's extract the first number from that set that we want to check as to whether it's a prime. When we check the value we're going to check if it is a prime...if it is, we're going to add it to our list called primes_list...if it isn't a prime we don't want to keep it
-
-There is a method which will remove an element from a list or set and provide that value to us, and that method is called *pop*
-
-```ruby
-print(number_range)
->>> {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 ```
-If we use pop, and assign this to the object called **prime** it will *pop* the first element from the set out of **number_range**, and into **prime**
+The primary dictionaries for storing lexical frames are initialized. The first dictionary stores frames containg a variant slot in the second position (the * of the). The second dictionary stores frames with a variant slot in the third position (study findings * that).
+
+```
+frame134Dic = {}
+frame124Dic = {}
+
+```
+**CONTINUE ADDING CONTENT HERE**
+
+If we use pop, and assign this to the object called prime it will *pop* the first element from the set out of **number_range, and into prime
 
 ```ruby
 prime = number_range.pop()
