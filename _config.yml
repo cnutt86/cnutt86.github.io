@@ -23,7 +23,7 @@ avatar_image: /img/profile_picture1.jpg
 #-------------------------------
 # Contact links
 linkedln: "https://www.linkedin.com/in/chris-nuttall-ut" # Add your linkedln handle
-#github: "https://github.com/cnutt86"  # Add your github handle
+# github: "https://github.com/cnutt86"
 
 paginate: 6
 paginate_path: "/page/:num"
@@ -51,6 +51,7 @@ defaults:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
 
 
 
