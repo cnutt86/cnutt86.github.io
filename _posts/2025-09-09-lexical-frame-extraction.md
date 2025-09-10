@@ -34,14 +34,12 @@ ENG_wcount = 0
 GEO_wcount = 0
 MPS_wcount = 0
 SBE_wcount = 0
-
 ```
 The primary dictionaries for storing lexical frames are initialized. The first dictionary stores frames containg a variant slot in the second position (the * of the). The second dictionary stores frames with a variant slot in the third position (study findings * that).
 
 ```
 frame134Dic = {}
 frame124Dic = {}
-
 ```
 **CONTINUE ADDING CONTENT HERE**
 
