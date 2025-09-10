@@ -93,23 +93,21 @@ fileOut3.write("MPS Range,MPS Raw,MPS Nrmd,") #data categories for MPS sub-corpu
 fileOut3.write("SBE Range,SBE Raw,SBE Nrmd\n") #data categories for SBE sub-corpus
 ```
 **CONTINUE EDITING MARKUP HERE**
+The fourth output file is opened for reading and writing. The file is given the name attached to the variable 'newFile4'. The os.path.join function is used to include the fourth file in the folder attached to the 'new_folder'variable.
 
 ```python
-#here the fourth output file is opened for reading and writing. The file is given the name attached to the variable 'newFile4'.
-#the os.path.join function is used to include the fourth file in the folder attached to the 'new_folder'variable.
 fileOut4 = open(os.path.join(new_folder, newFile4),'w+')
 fileOut4.write("Frame,F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,F13,F14,F15\n") #first row of csv is populated with frame and filler (F1,F2,etc.) column headers
+```
+An absolute file path is initialized for reading in the corpus. glob.glob function with for loop used to go into file path and work with each file in the folder. The open function opens each file in the path, sets the coding scheme to utf 8, and ignores
+#any characters that are not utf-8 to avoid syntax errors
 
-
-# absolute file path is initialized for reading in the corpus. Note: file paths for PC uses the backslash. You may need to change this.
+```python
 path = r"/Users/christophernuttall/Dropbox/01 MacBook Pro Files/01 PhD ALT/01_Corpus Research/01_Copora/NSFAC_Untagged/*.txt"
 
-#glob.glob function with for loop used to go into file path and work with each file in the folder
-#the open function opens each file in the path, sets the coding scheme to utf 8, and ignores
-# any characters that are not utf-8 to avoid syntax errors
 for file in glob.glob(path):
     with open(file, encoding='utf-8-sig', errors='ignore') as file_in:
-        file_name = re.sub("/.+/",'',file)# Note: regex may be different if using PC.looks at the end of file path for file name and saves it in the string variable 'file-name'
+        file_name = re.sub("/.+/",'',file)
         sub_corp = re.sub("_.+", '', file_name) #replaces the end of the file_name string with nothing, leaving only the sub-corpus label
         text = file_in.read() #reads the file and saves the text to the 'text' variable
         text = text.lower()#makes all words in text lowercase.
