@@ -92,14 +92,13 @@ fileOut3.write("GEO Range,GEO Raw,GEO Nrmd,") #data categories for GEO sub-corpu
 fileOut3.write("MPS Range,MPS Raw,MPS Nrmd,") #data categories for MPS sub-corpus
 fileOut3.write("SBE Range,SBE Raw,SBE Nrmd\n") #data categories for SBE sub-corpus
 ```
-**CONTINUE EDITING MARKUP HERE**
 The fourth output file is opened for reading and writing. The file is given the name attached to the variable 'newFile4'. The os.path.join function is used to include the fourth file in the folder attached to the 'new_folder'variable.
 
 ```python
 fileOut4 = open(os.path.join(new_folder, newFile4),'w+')
 fileOut4.write("Frame,F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,F13,F14,F15\n") #first row of csv is populated with frame and filler (F1,F2,etc.) column headers
 ```
-An absolute file path is initialized for reading in the corpus. The glob.glob function with a for loop goes into the file path and employs various regular expressions to modify the each text file in the folder. Some modifications are made to the file names. These modifications become more relevant later on in the script. 
+An absolute file path is initialized for reading in the corpus. The glob.glob function with a for loop goes into the file path and employs various regular expressions to modify each text file in the folder. Some modifications are made to the file names. These modifications become more relevant later on in the script. 
 
 ```python
 path = r"/Users/christophernuttall/Dropbox/01 MacBook Pro Files/01 PhD ALT/01_Corpus Research/01_Copora/NSFAC_Untagged/*.txt"
