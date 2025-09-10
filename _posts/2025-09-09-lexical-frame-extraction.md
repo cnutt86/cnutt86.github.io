@@ -99,8 +99,7 @@ The fourth output file is opened for reading and writing. The file is given the 
 fileOut4 = open(os.path.join(new_folder, newFile4),'w+')
 fileOut4.write("Frame,F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,F13,F14,F15\n") #first row of csv is populated with frame and filler (F1,F2,etc.) column headers
 ```
-An absolute file path is initialized for reading in the corpus. glob.glob function with for loop used to go into file path and work with each file in the folder. The open function opens each file in the path, sets the coding scheme to utf 8, and ignores
-#any characters that are not utf-8 to avoid syntax errors
+An absolute file path is initialized for reading in the corpus. The glob.glob function with a for loop goes into the file path and employs various regular expressions to modify the each text file in the folder. Some modifications are made to the file names. These modifications become more relevant later on in the script. 
 
 ```python
 path = r"/Users/christophernuttall/Dropbox/01 MacBook Pro Files/01 PhD ALT/01_Corpus Research/01_Copora/NSFAC_Untagged/*.txt"
@@ -120,6 +119,10 @@ for file in glob.glob(path):
         text = re.sub('-', '', text) #eliminates the hyphen between hyphenated words
         text = re.sub("\\s+", " ", text) #eliminates extra whitespace
         wordList = text.split() #splits text string into a list array of punctuation and words.
+```
+A for loop and a series of if-conditionals calculate word counts for the sub-corpora and the corpus as a whole.
+
+```python
 
         # for loop to establish total word count and sub-corpora word counts.
         for word in wordList:
@@ -139,8 +142,10 @@ for file in glob.glob(path):
                     MPS_wcount += 1
                 else: #if word in SBE Sub-corp word count for that sub-corpus increases by 1
                     SBE_wcount += 1
+```
+**CONTINUE EDITING HERE**
 
-
+```python
         # main for loop for finding all 4 word bundles, converting them to frames, and saving them to frame dictionary
         for i in range(len(wordList)-3):
 
