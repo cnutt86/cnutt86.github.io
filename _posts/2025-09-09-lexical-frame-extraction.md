@@ -5,22 +5,22 @@ image: "/posts/Lexical_Frame.jpg"
 tags: [NLP, Python]
 ---
 
-This post contains the Python script I developed to extract all four-word lexical frames (e.g., the * of this, study finding * that)from a corpus of 3,500 NSF proposal abstracts. The script was also used to calculate key statistics reported in an academic article published in Applied Corpus Linguistics.
+This post contains the Python script I developed to extract all four-word lexical frames (e.g., the * of this, study findings * that, etc.)from a corpus of 3,500 NSF grant proposal abstracts. The script was also used to calculate key statistics reported in an academic article published in Applied Corpus Linguistics entitled "Profiling Lexical Frame Use in NSF Grant Proposal Abstracts."
 
 ---
 
-First let's start by setting up a variable that will act as the upper limit of numbers we want to search through. We'll start with 20, so we're essentially wanting to find all prime numbers that exist that are equal to or smaller than 20
+Below the operating system, regular expressions, glob, and collections/counter modules are imported to access functions from those sources that will be used in the program
 
-```ruby
-n = 20
 ```
+import os
+import re
+import glob
+from collections import Counter
+```
+A list variable is initialized and populated. It is used to facilitate word count and checking for punctuation in lexical bundles
 
-The smallest true Prime number is 2, so we want to start by creating a list of numbers than need checking so every integer between 2 and what we set above as the upper bound which in this case was 20. We use n+1 as the range logic is not inclusive of the upper limit we set there
-
-Instead of using a list, we're going to use a set.  The reason for this is that sets have some special functions that will allow us to eliminate non-primes during our search.  You'll see what I mean soon...
-
-```ruby
-number_range = set(range(2, n+1))
+```
+puncList = [',','.',':',';','[',']','"','?','(',')','-','--','%','$','@','!',"|","{","}","=",'+','<','>','/',"\\"]
 ```
 
 Let's also create a place where we can store any primes we discover.  A list will be perfect for this job
