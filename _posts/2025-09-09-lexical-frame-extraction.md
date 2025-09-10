@@ -41,28 +41,33 @@ The primary dictionaries for storing lexical frames are initialized. The first d
 frame134Dic = {}
 frame124Dic = {}
 ```
-The title of a new folder "NSFAC Frame Data" populates the new_folder variable. the if conditional checks to see that that file does not exist and creates a new folder with theos.makedirs function.
+The title of a new folder "NSFAC Frame Data" populates the new_folder variable. The if conditional checks to see that that file does not exist and creates a new folder with the os.makedirs function.
 
 ```python
 new_folder = "NSFAC Frame Data"
 if not os.path.exists(new_folder):
     os.makedirs(new_folder)
 ```
-**CONTINUE ADDING CONTENT HERE**
-Now, we know that the very first value in our range is going to be a prime...as there is nothing smaller than it so therefore nothing else could possible divide evenly into it.  As we know it's a prime, let's add it to our list of primes...
+Four new csv file variables are initialized here. the output data will be saved to these files.
 
-```ruby
-primes_list.append(prime)
-print(primes_list)
->>> [2]
+```python
+newFile = "frame134_data.csv"
+newFile2 = "frame134_fillers.csv"
+newFile3 = "frame124_data.csv"
+newFile4 = "frame124_fillers.csv"
 ```
+The first output file is opened for reading and writing. The file is given the name attached to the variable 'newFile'. The os.path.join function is used to include the new file in the folder attached to the 'new_folder'variable.
 
-Now we're going to do a special trick to check our remaining number_range for non-primes. For the prime number we just checked (in this first case it was the number 2) we want to generate all the multiples of that up to our upper range (in our case, 20).
-
-We're going to again use a set rather than a list, because it allows us some special functionality that we'll use soon, which is the magic of this approach.
-
-```ruby
-multiples = set(range(prime*2, n+1, prime))
+```python
+fileOut = open(os.path.join(new_folder, newFile),'w+')
+fileOut.write("Frame,Range,Raw Count,Norm Freq,Num Fillers,F1 Word,F1 Freq,TTR,Predictability,")#first few cells of CSV file populated with data categoroies
+fileOut.write("BIO Range,BIO Raw,BIO Nrmd,") #data categories for BIO sub-corpus
+fileOut.write("CIS Range,CIS Raw,CIS Nrmd,") #data categories for CIS sub-corpus
+fileOut.write("EHR Range,EHR Raw,EHR Nrmd,") #data categories for EHR sub-corpus
+fileOut.write("ENG Range,ENG Raw,ENG Nrmd,") #data categories for ENG sub-corpus
+fileOut.write("GEO Range,GEO Raw,GEO Nrmd,") #data categories for GEO sub-corpus
+fileOut.write("MPS Range,MPS Raw,MPS Nrmd,") #data categories for MPS sub-corpus
+fileOut.write("SBE Range,SBE Raw,SBE Nrmd\n") #data categories for SBE sub-corpus
 ```
 
 Remember that when created a range the syntax is range(start, stop, step). For the starting point - we don't need our number as that has already been added as a prime, so let's start our range of multiples at 2 * our number as that is the first multiple, in our case, our number is 2 so the first multiple will be 4. If the number we were checking was 3 then the first multiple would be 6 - and so on.
