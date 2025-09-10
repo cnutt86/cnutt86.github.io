@@ -9,21 +9,21 @@ plugins:
 #-------------------------------
 # General Site Settings
 title: Christopher Nuttall
-description: "Welcome to my portfolio. This portfolio focuses on interesting projects I've recently undertaken in the area of data science. Please visit my Github & LinkedIn pages (or download my Resume) by using the links below!"
+description: "Welcome to my portfolio. This portfolio focuses on interesting projects I've recently undertaken. Not only do these include data science projects, but they also include Pythons scripts I have written to carry NLP tasks in preparation for linguistic data analysis. Please visit my LinkedIn page (or download my Resume) by using the links below!"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 #-------------------------------
 # About Section
 subtitle: Data Science <span style="color:#f58506"> Portfolio </span>
-location: "Iowa, US"
+location: "United States"
 resume_url: /docs/ChrisNuttall_Resume_2025.pdf
 avatar_image: /img/profile_picture1.jpg
 
 #-------------------------------
 # Contact links
 linkedln: "https://www.linkedin.com/in/chris-nuttall-ut" # Add your linkedln handle
-github: "https://github.com/cnutt86"  # Add your github handle
+#github: "https://github.com/cnutt86"  # Add your github handle
 
 paginate: 6
 paginate_path: "/page/:num"
@@ -51,6 +51,7 @@ defaults:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
 
 
 
