@@ -11,7 +11,7 @@ This post contains the Python script I developed to extract all four-word lexica
 
 Below the operating system, regular expressions, glob, and collections/counter modules are imported to access functions from those sources that will be used in the program
 
-```
+```python
 import os
 import re
 import glob
@@ -19,12 +19,12 @@ from collections import Counter
 ```
 A list variable is initialized and populated. It is used to facilitate word count and checking for punctuation in lexical bundles
 
-```
+```python
 puncList = [',','.',':',';','[',']','"','?','(',')','-','--','%','$','@','!',"|","{","}","=",'+','<','>','/',"\\"]
 ```
 integer variables used for calculatin various word counts are initatied. These include word counts for for the entire corpus in addition to word counts for each academic sub-discipline represented by the corpus.  
 
-```
+```python
 totalWordCount = 0
 
 BIO_wcount = 0
@@ -37,13 +37,13 @@ SBE_wcount = 0
 ```
 The primary dictionaries for storing lexical frames are initialized. The first dictionary stores frames containg a variant slot in the second position (the * of the). The second dictionary stores frames with a variant slot in the third position (study findings * that).
 
-```
+```python
 frame134Dic = {}
 frame124Dic = {}
 ```
 The title of a new folder "NSFAC Frame Data" populates the new_folder variable. the if conditional checks to see that that file does not exist and creates a new folder with theos.makedirs function.
 
-```
+```python
 new_folder = "NSFAC Frame Data"
 if not os.path.exists(new_folder):
     os.makedirs(new_folder)
