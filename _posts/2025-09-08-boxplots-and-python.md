@@ -5,7 +5,7 @@ image: "/posts/Lexical_Frame.jpeg"
 tags: [NLP, Python]
 ---
 
-This post contains the Python script I developed to generate boxplots for visualizinng the the differences and similarities in the distribution of linguistic data associated with NSF grant proposal project summaries. Four sets of boxplots were generated to compare the use of linguistic features across four academic disciplines. Each set of boxplots represented one dimesion of linguistic variation previously established in a PCA. Although this post does not engage in detailed  
+This post contains the Python script I developed to generate boxplots for visualizinng the the differences and similarities in the distribution of linguistic data associated with NSF grant proposal project summaries across four academic disciplines. Four sets of boxplots were generated to compare the use of linguistic features across four academic disciplines. Each set of boxplots represented one dimesion of linguistic variation previously established in a PCA. Although this post does not engage in detailed  
 
 ---
 
