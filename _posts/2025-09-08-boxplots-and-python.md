@@ -11,7 +11,7 @@ In this post, I do not draw any analytical inferences regarding the boxplots der
 
 ---
 
-Below panda, matplotlib, glob, and seaborn are imported to access functions from those sources that will be used in the program
+Below pandas, matplotlib, and seaborn are imported to access functions from those sources that will be used in the program
 
 ```python
 import pandas as pd
