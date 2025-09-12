@@ -23,7 +23,8 @@ Before any visualizations can be generated, the data required for creating the b
 ```python
 df = pd.read_csv("DimensionScores_BoxPlot.csv")
 ```
-**CONTINUE UPDATE HERE**  
+**CONTINUE UPDATE HERE** 
+**Note**: The rest of this post is just filler. I am still working on updating it. Come back later to see the full post in in its true glory.  
 
 ```python
 totalWordCount = 0
