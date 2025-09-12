@@ -11,20 +11,19 @@ In this post, I do not draw any analytical inferences regarding the boxplots der
 
 ---
 
-Below the operating system, regular expressions, glob, and collections/counter modules are imported to access functions from those sources that will be used in the program
+Below panda, matplotlib, glob, and seaborn are imported to access functions from those sources that will be used in the program
 
 ```python
-import os
-import re
-import glob
-from collections import Counter
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 ```
-A list variable is initialized and populated. It is used to facilitate word count and checking for punctuation in lexical bundles
+Before any visualizations can be generated, the data required for creating the boxplopts must first be imported from a CSV file and saved to a DataFrame. The following line of code accomplishes this task using a relative path to the CSV file. 
 
 ```python
-puncList = [',','.',':',';','[',']','"','?','(',')','-','--','%','$','@','!',"|","{","}","=",'+','<','>','/',"\\"]
+df = pd.read_csv("DimensionScores_BoxPlot.csv")
 ```
-integer variables used for calculating various word counts are initatied. These include word counts for the entire corpus in addition to word counts for each academic sub-discipline represented by the corpus.  
+**CONTINUE UPDATE HERE**  
 
 ```python
 totalWordCount = 0
