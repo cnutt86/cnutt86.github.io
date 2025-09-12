@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python Boxplots for Linguistic Analysis
-image: "/posts/Lexical_Frame.jpeg"
+image: "/posts/Dim2_boxplot.jpg"
 tags: [Python, Data Visualization, Linguistic Analysis]
 ---
 
