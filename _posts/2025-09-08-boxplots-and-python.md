@@ -5,7 +5,7 @@ image: "/posts/Dim2_boxplot.jpg"
 tags: [Python, Data Visualization, Linguistic Analysis]
 ---
 
-This post contains the Python script I developed to generate boxplots for visualizinng differences and similarities in the distribution of linguistic data associated with NSF grant proposal project summaries across four academic disciplines. Four sets of boxplots were generated to compare the use of linguistic features in the disciplines, with each set corresponding to one dimesion of linguistic variation previously established in a Principal Component Analysis (PCA). 
+In this poist, I present the Python script I developed to generate boxplots for visualizinng differences and similarities in the distribution of linguistic data associated with NSF grant proposal project summaries across four academic disciplines. Four sets of boxplots were generated to compare the use of linguistic features in the disciplines, with each set corresponding to one dimesion of linguistic variation previously established in a Principal Component Analysis (PCA). 
 
 In this post, I do not draw any analytical inferences regarding the boxplots deriving from the program script. Instead, the primary purpose of this post is to highlight my ability to develop a Python script to produce a common form of data visualization. If your are interested in more in depth analytical discussion, you are more than welcome to request a copy of my dissertation study, *Perhaps It's a Matter of Discipline: An Analysis of Linguistic Variation in NSF Project Summaries*.   
 
