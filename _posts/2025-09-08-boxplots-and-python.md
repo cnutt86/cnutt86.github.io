@@ -191,4 +191,3 @@ print(f"Here are Dimension 4 standard deviations:\n\n {Dim4_directorate_stanDevs
 ![alt text](/img/posts/Dim4_boxplot.jpg "Dimension 1 Box Plots")
 
 Thank you for taking the time to read through this script. Please feel free to contact me with any questions you may have. 
-```
