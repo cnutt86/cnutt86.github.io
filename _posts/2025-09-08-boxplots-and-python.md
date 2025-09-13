@@ -40,7 +40,7 @@ plt.ylabel('Dimension 1', fontsize=14)
 plt.xticks(rotation=45, ha='right')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 ```
-In this block of code, I calucate key statistics (overall mean, median, and mode) for the numerical data in the dimesnion column of the DataFrame. I then write code to indlcude this information in a data annotation on the box plot. Hashed comments provide a few more details as to how this is accomplished. 
+In this block of code, I calucate key statistics (overall mean, median, and mode) for the numerical data in the Dimesnion 1 column of the DataFrame. I then write code to indlcude this information in a data annotation on the box plot. Hashed comments provide a few more details as to how this is accomplished. 
 
 ```python
 # Calculate key statistics to be displayed in the corner of the box plot figure. 
