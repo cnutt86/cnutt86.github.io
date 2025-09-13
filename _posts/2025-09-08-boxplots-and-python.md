@@ -23,31 +23,34 @@ Before any visualizations can be generated, the data required for creating the b
 ```python
 df = pd.read_csv("DimensionScores_BoxPlot.csv")
 ```
-**CONTINUE UPDATE HERE** 
-
-**Note**: The rest of this post is just filler. I am still working on updating it. Come back later to see the full post in in its true glory.  
+The next two lines of code generate a box plot using the seaborn and matplotlib libraries. Together, they create a visualization of the distribution of numeric values associated with the the use of linguistic features in the first dimension of linguistic variation previously established in a PCA. The visualization relies on a categorical variable (Directorate) to group the numerical data by NSF disciplinary directorate. 
 
 ```python
-totalWordCount = 0
-
-BIO_wcount = 0
-CIS_wcount = 0
-EHR_wcount = 0
-ENG_wcount = 0
-GEO_wcount = 0
-MPS_wcount = 0
-SBE_wcount = 0
+# Create the boxplot of Dim1 grouped by directorate
+plt.figure(figsize=(16, 11))
+sns.boxplot(x='Directorate', y='Dim1', data=df, color='aquamarine')
 ```
-The primary dictionaries for storing lexical frames are initialized. The first dictionary stores frames containg a variant slot in the second position (*the * of the*). The second dictionary stores frames with a variant slot in the third position (*study findings * that*).
+The following lines of code modify various visual details for the box plot figure. In addition to adding a titles and x/y labels, the code also modifies the orientation of the x-axis labels and adds horizontal grid lines. 
 
 ```python
-frame134Dic = {}
-frame124Dic = {}
+# Improve the plot appearance
+plt.title('Boxplot of Dim1 Grouped by NSF Disciplinary Directorate', fontsize=16)
+plt.xlabel('Disciplinary Directorate', fontsize=14)
+plt.ylabel('Dimension 1', fontsize=14)
+plt.xticks(rotation=45, ha='right')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
 ```
-The title of a new folder "NSFAC Frame Data" populates the new_folder variable. The if conditional checks to see that that file does not exist and creates a new folder with the os.makedirs function.
+In this block of code, I calucate key statistics (overall mean, median, and mode) for the numerical data in the dimesnion column of the DataFrame. I then write code to indlcude this information in a data annotation on the box plot. Hashed comments provide a few more details as to how this is accomplished. 
 
 ```python
-new_folder = "NSFAC Frame Data"
-if not os.path.exists(new_folder):
-    os.makedirs(new_folder)
+# Calculate key statistics to be displayed in the corner of the box plot figure. 
+stats_text = f"Overall Mean: {df['Dim1'].mean():.2f}\n"
+stats_text += f"Overall Median: {df['Dim1'].median():.2f}\n"
+stats_text += f"Overall Std Dev: {df['Dim1'].std():.2f}"
+
+#Add the stats_text to the box plot at 2% over on the x-axis and 90% up on the y-axis.
+# xycoords='axes fraction' ensures the added data annotation stays in same relative location regardless of plot size.
+# bbox=dict creates a box around the data annotation addhering to the arguments inside the parentheses. 
+plt.annotate(stats_text, xy=(0.02, 0.90), xycoords='axes fraction', 
+                bbox=dict(boxstyle="round,pad=0.5", fc="white", alpha=0.8))
 ```
