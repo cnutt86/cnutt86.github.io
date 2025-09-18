@@ -5,7 +5,7 @@ image: "/posts/numpy_planets.jpg"
 tags: [Python, Numpy]
 ---
 
-In this post, I present a mini-project employing NumPy to calculate planet volumes. There are two primary goals associated with this project. These goals include the following: 1) Calculate volumes for the planets in our solar system and 2) Calculate volumes for 1 million fictitious planets with randomly generated radii.
+In this post, I present a mini-project employing NumPy to calculate planet volumes. There are two primary goals associated with this project. These goals include the following: 1) Calculating volumes for the planets in our solar system and 2) Calculating volumes for 1 million fictitious planets with randomly generated radii.
 
 When carried out, this script demonstrates the speed and efficiency with which NumPy makes calculations.   
 
@@ -26,7 +26,7 @@ print(volume)
 volumes = 4/3 * np.pi * radii**3
 print(volumes)
 ```
-The remainder of the script overwrites the radii array with a 1 dimensional array containing randomly generated radii for 1 million ficticious planets. Each radius in the array is somewhere between 1 and 1,000. The radii in the array are used to calculate volumes for all 1 million planets. 
+The remainder of the script overwrites the radii array with a 1 dimensional array containing randomly generated radii for 1 million fictitious planets. Each radius in the array is somewhere between 1 and 1,000. The radii in the array are used to calculate volumes for all 1 million planets. 
 
 ```python
 # Overwrite the radii array with a new array of 1 million randomly generated radii between 1 and 1,000
