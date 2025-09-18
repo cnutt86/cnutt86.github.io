@@ -7,7 +7,7 @@ tags: [Python, NumPy]
 
 In this post, I present a mini-project employing NumPy to calculate planet volumes. There are two primary goals, which include the following: 1) Calculating volumes for the planets in our solar system and 2) Calculating volumes for 1 million fictitious planets with randomly generated radii.
 
-When carried out, this script demonstrates the speed and efficiency with which NumPy makes calculations.   
+When implemented, this script demonstrates the speed and efficiency with which NumPy makes calculations.   
 
 ---
 
