@@ -5,7 +5,9 @@ image: "/posts/numpy_planets.jpg"
 tags: [Python, Numpy]
 ---
 
-In this post, I present the Python script I developed to generate boxplots for visualizinng differences....   
+In this post, I present a mini-project employing NumPy to calculate planet volumes. There are two primary goals associated with this project. These goals include the following: 1) Calculate volumes for the planets in our solar system and 2) Calculate volumes for 1 million fictitious planets with randomly generated radii.
+
+When carried out, this script demonstrates the speed and efficiency with which NumPy makes calculations.   
 
 ---
 
