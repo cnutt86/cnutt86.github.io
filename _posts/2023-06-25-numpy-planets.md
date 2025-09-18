@@ -11,7 +11,7 @@ When implemented, this script demonstrates the speed and efficiency with which N
 
 ---
 
-The first half of the script imports NumPy, creates a 1 dimensional array containing the radii of planets in our solar system, and works its way through the basic procedure for calculating the volume of sphere. This proceudre is then used to calculate volumes of the planets in our solar system using the radii contained in the NumPy radii array.  
+The first half of the script imports NumPy, creates a 1 dimensional array containing the radii of planets in our solar system, and works its way through the basic procedure for calculating the volume of a sphere. This procedure is then used to calculate volumes of the planets in our solar system using the radii contained in the NumPy radii array.  
 
 ```python
 #create a numpy array with the radii of planets in our solar system
