@@ -11,10 +11,18 @@ When carried out, this script demonstrates the speed and efficiency with which N
 
 ---
 
-Below pandas, matplotlib, and seaborn are imported to access functions from those sources that will be used in the program
+The first half of the script imports NumPy, creates a 1 dimensional array containing the radii of planets in our solar system, and works its way through the basic procedure for calculating the volume of sphere. This proceudre is than used to calculate volumes of the planets in our solar system using the radii contained in the NumPy radii array.  
 
 ```python
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+#create a numpy array with the radii of planets in our solar system
+radii = np.array([2439.7, 6051.8, 6371, 3389.7, 69911, 58232, 25362, 24622])
+
+# Test the the basic procedure for calculating volumes
+r = 10
+volume = 4/3 * np.pi * r**3
+print(volume)
+
+# Apply procedure to planet radii in the numpy radii array by replacing r with radii 
+volumes = 4/3 * np.pi * radii**3
+print(volumes)
 ```
