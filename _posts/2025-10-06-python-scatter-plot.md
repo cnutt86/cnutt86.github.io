@@ -2,7 +2,7 @@
 layout: post
 title: Generating Height and Weight Scatterplot with Matplotlib
 image: "/posts/scatter_thumbnail.jpg"
-tags: [NLP, Python]
+tags: [Matplotlib, Data Visualization]
 ---
 
 This post contains the Python script I developed to generate a scatterplot comparing height and weight variables from a sample of male individuals. The scatterplot deriving from this script suggests a positive correlation between height and weight, with weight increasing as height increases. 
