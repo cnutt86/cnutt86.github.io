@@ -49,7 +49,7 @@ plt.style.use('seaborn-v0_8-poster')
 
 # create scatter plot
 # Plot weight (x-axis) against height (y-axis)
-# make the color of the data points blue (coler = blue)
+# make the color of the data points blue (color = blue)
 # make the size of the data points 700 square points (I believe 36 square points is standard)
 # Make the the data points partially transparent (alpha = 0.5)
 plt.scatter(male_sample["Weight"], male_sample["Height"], color = "blue", s = 700, alpha = 0.5)
