@@ -17,7 +17,7 @@ Below pandas and matplotlib are imported to access functions from those sources 
 import matplotlib.pyplot as plt
 import pandas as pd
 ```
-Three DataFrames are created using pandas. First, the 'body_data' DataFrame is created from the height and weight data included in the csv file "weights_and_heights.csv". The other two DataFrames are the 'male' and 'female' DataFrames. While the 'female' DataFrame contains the subset of height and weight data for all females in the 'body_data' DataFrame, the 'male' Data_Frame contains the subset of all 'male' height ant wieght data.
+Three DataFrames are created using pandas. First, the 'body_data' DataFrame is created from the height and weight data included in the csv file "weights_and_heights.csv". The other two DataFrames are the 'male' and 'female' DataFrames. While the 'female' DataFrame contains the subset of height and weight data for all females in the 'body_data' DataFrame, the 'male' Data_Frame contains the subset of all 'male' height ant wieght data. Only the male data will be used for the remainder of the script.
 
 ```python
 body_data = pd.read_csv("weights_and_heights.csv")
