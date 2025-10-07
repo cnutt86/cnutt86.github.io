@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Generating Height and Weight Scatterplot with Matplotlib
+title: Generating a Height and Weight Scatterplot with Matplotlib
 image: "/posts/scatter_thumbnail.jpg"
 tags: [Matplotlib, Data Visualization, Python]
 ---
