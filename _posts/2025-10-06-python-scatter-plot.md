@@ -111,8 +111,9 @@ plt.savefig(fname = "exported_plot.png")
 plt.show()
 
 ```
-Here is the final scatterplot produced by the script. 
-Image Here
+**Here is the final scatterplot produced by the script.** 
+
+![alt text](/img/posts/Dim2_boxplot.jpg "Scatter Plot of Male Weight and Height Data")
 
 Thank you for taking the time to read through this script. Please feel free to contact me with any questions you may have.
 
