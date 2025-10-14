@@ -5,7 +5,9 @@ image: "/posts/ab-testing-title-img.png"
 tags: [AB Testing, Hypothesis Testing, Chi-Square, Python]
 ---
 
-In this project we apply Chi-Square Test For Independence (a Hypothesis Test) to assess the performance of two types of mailers that were sent out to promote a new service! 
+In this project I apply Chi-Square Test For Independence (a Hypothesis Test) to assess the performance of two types of mailers that were sent out to promote a new service!
+
+**Note:** This is a simulated scenario. I completed this project as part of a data science course. Its primary purpose is to demonstrate that I can run a Chi-square test in Python to resolve an issue that I would very likely encounter in a business setting. 
 
 # Table of contents
 
@@ -25,7 +27,7 @@ ___
 
 ### Context <a name="overview-context"></a>
 
-Earlier in the year, our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" - an initiative that costs a customer $100 per year for membership, but offers free grocery deliveries rather than the normal cost of $10 per delivery.
+Earlier in the year, the client, a grocery retailer, ran a campaign to promote their new "Delivery Club" - an initiative that costs a customer $100 per year for membership, but offers free grocery deliveries rather than the normal cost of $10 per delivery.
 
 For the campaign promoting the club, customers were put randomly into three groups - the first group received a low quality, low cost mailer, the second group received a high quality, high cost mailer, and the third group were a control group, receiving no mailer at all.
 
@@ -35,7 +37,7 @@ The client knows that customers who were contacted, signed up for the Delivery C
 <br>
 ### Actions <a name="overview-actions"></a>
 
-For this test, as it is focused on comparing the *rates* of two groups - we applied the Chi-Square Test For Independence.  Full details of this test can be found in the dedicated section below.
+For this test, as it is focused on comparing the *rates* of two groups - I applied the Chi-Square Test For Independence.  Full details of this test can be found in the dedicated section below.
 
 **Note:** Another option when comparing "rates" is a test known as the *Z-Test For Proportions*.  While, we could absolutely use this test here, we have chosen the Chi-Square Test For Independence because:
 
@@ -43,22 +45,22 @@ For this test, as it is focused on comparing the *rates* of two groups - we appl
 * The Chi-Square Test can be represented using 2x2 tables of data - meaning it can be easier to explain to stakeholders
 * The Chi-Square Test can extend out to more than 2 groups - meaning the client can have one consistent approach to measuring signficance
 
-From the *campaign_data* table in the client database, we isolated customers that received "Mailer 1" (low cost) and "Mailer 2" (high cost) for this campaign, and excluded customers who were in the control group.
+From the *campaign_data* table in the client database, I isolated customers that received "Mailer 1" (low cost) and "Mailer 2" (high cost) for this campaign, and excluded customers who were in the control group.
 
-We set out our hypotheses and Acceptance Criteria for the test, as follows:
+I set out the hypotheses and Acceptance Criteria for the test, as follows:
 
 **Null Hypothesis:** There is no relationship between mailer type and signup rate. They are independent.
 **Alternate Hypothesis:** There is a relationship between mailer type and signup rate. They are not independent.
 **Acceptance Criteria:** 0.05
 
-As a requirement of the Chi-Square Test For Independence, we aggregated this data down to a 2x2 matrix for *signup_flag* by *mailer_type* and fed this into the algorithm (using the *scipy* library) to calculate the Chi-Square Statistic, p-value, Degrees of Freedom, and expected values
+As a requirement of the Chi-Square Test For Independence, I aggregated this data down to a 2x2 matrix for *signup_flag* by *mailer_type* and fed this into the algorithm (using the *scipy* library) to calculate the Chi-Square Statistic, p-value, Degrees of Freedom, and expected values
 
 <br>
 <br>
 
 ### Results & Discussion <a name="overview-results"></a>
 
-Based upon our observed values, we can give this all some context with the sign-up rate of each group.  We get:
+Based upon the observed values, I can give this all some context with the sign-up rate of each group.  We get:
 
 * Mailer 1 (Low Cost): **32.8%** signup rate
 * Mailer 2 (High Cost): **37.8%** signup rate
@@ -70,13 +72,13 @@ However, the Chi-Square Test gives us the following statistics:
 
 The Critical Value for our specified Acceptance Criteria of 0.05 is **3.84**
 
-Based upon these statistics, we retain the null hypothesis, and conclude that there is no relationship between mailer type and signup rate.
+Based upon these statistics, I retain the null hypothesis, and conclude that there is no relationship between mailer type and signup rate.
 
-In other words - while we saw that the higher cost Mailer 2 had a higher signup rate (37.8%) than the lower cost Mailer 1 (32.8%) it appears that this difference is not significant, at least at our Acceptance Criteria of 0.05.
+In other words, while I saw that the higher cost Mailer 2 had a higher signup rate (37.8%) than the lower cost Mailer 1 (32.8%) it appears that this difference is not significant, at least at the Acceptance Criteria of 0.05.
 
 Without running this Hypothesis Test, the client may have concluded that they should always look to go with higher cost mailers - and from what we've seen in this test, that may not be a great decision.  It would result in them spending more, but not *necessarily* gaining any extra revenue as a result
 
-Our results here also do not say that there *definitely isn't a difference between the two mailers* - we are only advising that we should not make any rigid conclusions *at this point*.  
+The results here also do not say that there *definitely isn't a difference between the two mailers* - we are only advising that we should not make any rigid conclusions *at this point*.  
 
 Running more A/B Tests like this, gathering more data, and then re-running this test may provide us, and the client more insight!
 
@@ -90,16 +92,16 @@ ___
 <br>
 #### A/B Testing
 
-An A/B Test can be described as a randomised experiment containing two groups, A & B, that receive different experiences. Within an A/B Test, we look to understand and measure the response of each group - and the information from this helps drive future business decisions.
+An A/B Test can be described as a randomised experiment containing two groups, A & B, that receive different experiences. Within an A/B Test, we look to understand and measure the response of each group. The information from this helps drive future business decisions.
 
-Application of A/B testing can range from testing different online ad strategies, different email subject lines when contacting customers, or testing the effect of mailing customers a coupon, vs a control group.  Companies like Amazon are running these tests in an almost never-ending cycle, testing new website features on randomised groups of customers...all with the aim of finding what works best so they can stay ahead of their competition.  Reportedly, Netflix will even test different images for the same movie or show, to different segments of their customer base to see if certain images pull more viewers in.
+Application of A/B testing can range from testing different online ad strategies, different email subject lines when contacting customers, or testing the effect of mailing customers a coupon, vs a control group.  Companies like Amazon are running these tests in an almost never-ending cycle, testing new website features on randomised groups of customers...all with the aim of finding what works best so they can stay ahead of their competition.  Reportedly, Netflix even tests different images for the same movie or show, to different segments of their customer base to see if certain images pull more viewers in.
 
 <br>
 #### Hypothesis Testing
 
-A Hypothesis Test is used to assess the plausibility, or likelihood of an assumed viewpoint based on sample data - in other words, a it helps us assess whether a certain view we have about some data is likely to be true or not.
+A Hypothesis Test is used to assess the plausibility, or likelihood of an assumed viewpoint based on sample data - in other words, it helps us assess whether a certain view we have about some data is likely to be true or not.
 
-There are many different scenarios we can run Hypothesis Tests on, and they all have slightly different techniques and formulas - however they all have some shared, fundamental steps & logic that underpin how they work.
+There are many different scenarios we can run Hypothesis Tests on, and they all have slightly different techniques and formulas. However, they all have some shared, fundamental steps & logic that underpin how they work.
 
 <br>
 **The Null Hypothesis**
@@ -118,14 +120,14 @@ In a Hypothesis Test, before we collect any data or run any numbers - we specify
 
 Conventionally, we set our Acceptance Criteria to 0.05 - but this does not have to be the case.  If we need to be more confident that something did not occur through chance alone, we could lower this value down to something much smaller, meaning that we only come to the conclusion that the outcome was special or rare if it’s extremely rare.
 
-So to summarise, in a Hypothesis Test, we test the Null Hypothesis using a p-value and then decide it’s fate based on the Acceptance Criteria.
+In summary, in a Hypothesis Test, we test the Null Hypothesis using a p-value and then decide it’s fate based on the Acceptance Criteria.
 
 <br>
 **Types Of Hypothesis Test**
 
 There are many different types of Hypothesis Tests, each of which is appropriate for use in differing scenarios - depending on a) the type of data that you’re looking to test and b) the question that you’re asking of that data.
 
-In the case of our task here, where we are looking to understand the difference in sign-up *rate* between two groups - we will utilise the Chi-Square Test For Independence.
+In the case of the task here, where I am looking to understand the difference in sign-up *rate* between two groups - I utilise the Chi-Square Test For Independence.
 
 <br>
 #### Chi-Square Test For Independence
@@ -153,11 +155,11 @@ In the client database, we have a *campaign_data* table which shows us which cus
 
 For this task, we are looking to find evidence that the Delivery Club signup rate for customers that received "Mailer 1" (low cost) was different to those who received "Mailer 2" (high cost) and thus from the *campaign_data* table we will just extract customers in those two groups, and exclude customers who were in the control group.
 
-In the code below, we:
+In the code below, I do the following:
 
-* Load in the Python libraries we require for importing the data and performing the chi-square test (using scipy)
+* Load in the Python libraries required for importing the data and performing the chi-square test (using scipy)
 * Import the required data from the *campaign_data* table
-* Exclude customers in the control group, giving us a dataset with Mailer 1 & Mailer 2 customers only
+* Exclude customers in the control group, providing a dataset with Mailer 1 & Mailer 2 customers only
 
 <br>
 ```python
@@ -208,9 +210,9 @@ ___
 <br>
 #### State Hypotheses & Acceptance Criteria For Test
 
-The very first thing we need to do in any form of Hypothesis Test is state our Null Hypothesis, our Alternate Hypothesis, and the Acceptance Criteria (more details on these in the section above)
+The very first thing we need to do in any form of Hypothesis Test is state the Null Hypothesis, the Alternate Hypothesis, and the Acceptance Criteria (more details on these in the section above)
 
-In the code below we code these in explcitly & clearly so we can utilise them later to explain the results.  We specify the common Acceptance Criteria value of 0.05.
+In the code below I code these in explcitly & clearly so I can utilise them later to explain the results.  I specify the common Acceptance Criteria value of 0.05.
 
 ```python
 
@@ -228,7 +230,7 @@ As mentioned in the section above, in a Chi-Square Test For Independence, the *o
 
 The below code:
 
-* Summarises our dataset to a 2x2 matrix for *signup_flag* by *mailer_type*
+* Summarises the dataset to a 2x2 matrix for *signup_flag* by *mailer_type*
 * Based on this, calculates the:
     * Chi-Square Statistic
     * p-value
@@ -263,7 +265,7 @@ print(critical_value)
 
 ```
 <br>
-Based upon our observed values, we can give this all some context with the sign-up rate of each group.  We get:
+Based upon the observed values, we can give this all some context with the sign-up rate of each group.  We get:
 
 * Mailer 1 (Low Cost): **32.8%** signup rate
 * Mailer 2 (High Cost): **37.8%** signup rate
@@ -279,7 +281,7 @@ ___
 <br>
 # Analysing The Results <a name="chi-square-results"></a>
 
-At this point we have everything we need to understand the results of our Chi-Square test - and just from the results above we can see that, since our resulting p-value of **0.16** is *greater* than our Acceptance Criteria of 0.05 then we will _retain_ the Null Hypothesis and conclude that there is no significant difference between the signup rates of Mailer 1 and Mailer 2.
+At this point we have everything we need to understand the results of our Chi-Square test - and just from the results above we can see that since our resulting p-value of **0.16** is *greater* than our Acceptance Criteria of 0.05 then we will _retain_ the Null Hypothesis and conclude that there is no significant difference between the signup rates of Mailer 1 and Mailer 2.
 
 We can make the same conclusion based upon our resulting Chi-Square statistic of **1.94** being _lower_ than our Critical Value of **3.84**
 
@@ -320,3 +322,4 @@ Without running this Hypothesis Test, the client may have concluded that they sh
 Our results here also do not say that there *definitely isn't a difference between the two mailers* - we are only advising that we should not make any rigid conclusions *at this point*.  
 
 Running more A/B Tests like this, gathering more data, and then re-running this test may provide us, and the client more insight!
+
